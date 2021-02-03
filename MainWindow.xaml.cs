@@ -24,5 +24,10 @@ namespace PChMI
         {
             InitializeComponent();
         }
+
+        private void buttonAdd_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

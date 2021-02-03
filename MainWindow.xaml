@@ -3,10 +3,78 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:PChMI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Лаборатоная работа" Height="650" Width="800">
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <GroupBox Grid.Column="0" Grid.Row="0" Header="Добавление" Padding="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Content="ФИО:" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" FontWeight="Bold" FontFamily="Arial Black" FontSize="16" />
+                <Label Content="Телефон:" Grid.Column="4" Grid.Row="0" Grid.ColumnSpan="2" FontWeight="Bold" FontFamily="Arial Black" FontSize="16" />
+                <TextBox x:Name="textBoxFIOAdd" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" FontSize="16"/>
+                <xctk:MaskedTextBox x:Name="_maskedTextBoxAdd" Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="3" Mask="+7 (000) 000-00-00" FontSize="16" />
+                <Label Content="Адрес:" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" FontWeight="Bold" FontFamily="Arial Black" FontSize="16" />
+                <TextBox x:Name="textBoxAdressAdd" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="4" FontSize="16"/>
+                <Button x:Name="buttonAdd" Content="Добавить" Grid.Column="5" Grid.Row="3" Grid.ColumnSpan="2" Click="buttonAdd_Click" FontWeight="Bold" FontSize="14"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Grid.Column="1" Grid.Row="0" Header="Редактирование" Padding="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Content="ФИО:" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" FontWeight="Bold" FontFamily="Arial Black" FontSize="16" />
+                <Label Content="Телефон:" Grid.Column="4" Grid.Row="0" Grid.ColumnSpan="2" FontWeight="Bold" FontFamily="Arial Black" FontSize="16" />
+                <TextBox x:Name="textBoxFIORef" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" FontSize="16"/>
+                <xctk:MaskedTextBox x:Name="_maskedTextBoxRef" Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="3" Mask="+7 (000) 000-00-00" FontSize="16" />
+                <Label Content="Адрес:" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" FontWeight="Bold" FontFamily="Arial Black" FontSize="16" />
+                <TextBox x:Name="textBoxAdressRef" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="4" FontSize="16"/>
+                <Button x:Name="buttonRef" Content="Редактировать" Grid.Column="5" Grid.Row="3" Grid.ColumnSpan="2" Click="buttonAdd_Click" FontWeight="Bold" FontSize="14"/>
+            </Grid>
+        </GroupBox>
+        <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2">
+            <DataGrid.Columns FontFamily="Arial Black" FontSize="16">
+                <DataGridTextColumn  Width="0.75*" Header="ФИО" Binding="{Binding FIO}" />
+                <DataGridTextColumn  Width="0.75*" Header="Телефон" Binding="{Binding Tel}" />
+                <DataGridTextColumn  Width="*" Header="Адрес" Binding="{Binding Adress}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
