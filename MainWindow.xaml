@@ -5,19 +5,53 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:PChMI"
+        xmlns:sys="clr-namespace:System;assembly=System.Runtime"
         mc:Ignorable="d"
-        Title="Лаборатоная работа" Height="650" Width="800">
-    <Grid>
+        Title="Лаборатоная работа" Height="650" Width="900" Loaded="Window_Loaded">
+    <Window.Resources>
+        <DataGridTextColumn x:Key="columnFIO" x:Shared="False" Header="ФИО" Width="0.75*" Binding="{Binding FIO}"/>
+        <DataGridTextColumn x:Key="columnTel" x:Shared="False" Header="Телефон" Width="0.75*" Binding="{Binding Tel}"/>
+        <DataGridTextColumn x:Key="columnAdress" x:Shared="False" Header="Адрес" Width="*" Binding="{Binding Adress}"/>
+        <Style x:Key="BoldSize">
+            <Setter Property="Control.FontFamily" Value="Arial Black"/>
+            <Setter Property="Control.FontWeight" Value="Bold"/>
+        </Style>
+        <Style TargetType="Label" BasedOn="{StaticResource BoldSize}">
+            <Setter Property="Control.FontSize" Value="16"/>
+        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource BoldSize}">
+            <Setter Property="Control.FontSize" Value="14"/>
+        </Style>
+        <Style TargetType="DataGrid">
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="Control.FontFamily" Value="Arial"/>
+            <Setter Property="Control.FontSize" Value="16"/>
+        </Style>
+        <Style x:Key="TextBox_and_MaskedTextBox">
+            <Setter Property="Control.FontFamily" Value="Arial"/>
+            <Setter Property="Control.FontSize" Value="16"/>
+        </Style>
+        <SolidColorBrush Color="WhiteSmoke" x:Key="DarkWhiteBackground" />
+        <SolidColorBrush Color="Black" x:Key="DarkWhiteText" />
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="{DynamicResource DarkWhiteBackground}" />
+            <Setter Property="Control.FontWeight" Value="Bold"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="0.75" />
+        </Style>
+    </Window.Resources>
+    <Grid Background="{DynamicResource DarkWhiteBackground}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition Height="0.25*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <GroupBox Grid.Column="0" Grid.Row="0" Header="Добавление" Padding="5">
+        <GroupBox Grid.Column="0" Grid.Row="0" Header="Добавление" Padding="5" BorderBrush="Black" Style="{StaticResource BoldSize}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
@@ -34,16 +68,16 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Label Content="ФИО:" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" FontWeight="Bold" FontFamily="Arial Black" FontSize="16" />
-                <Label Content="Телефон:" Grid.Column="4" Grid.Row="0" Grid.ColumnSpan="2" FontWeight="Bold" FontFamily="Arial Black" FontSize="16" />
-                <TextBox x:Name="textBoxFIOAdd" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" FontSize="16"/>
-                <xctk:MaskedTextBox x:Name="_maskedTextBoxAdd" Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="3" Mask="+7 (000) 000-00-00" FontSize="16" />
-                <Label Content="Адрес:" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" FontWeight="Bold" FontFamily="Arial Black" FontSize="16" />
-                <TextBox x:Name="textBoxAdressAdd" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="4" FontSize="16"/>
-                <Button x:Name="buttonAdd" Content="Добавить" Grid.Column="5" Grid.Row="3" Grid.ColumnSpan="2" Click="buttonAdd_Click" FontWeight="Bold" FontSize="14"/>
+                <Label Content="ФИО:" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Foreground="{DynamicResource DarkWhiteText}"/>
+                <Label Content="Телефон:" Grid.Column="4" Grid.Row="0" Grid.ColumnSpan="2" Foreground="{DynamicResource DarkWhiteText}"/>
+                <TextBox x:Name="textBoxFIOAdd" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource TextBox_and_MaskedTextBox}" Background="{DynamicResource DarkWhiteBackground}" Foreground="{DynamicResource DarkWhiteText}"/>
+                <xctk:MaskedTextBox x:Name="_maskedTextBoxAdd" Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="3" Mask="+7 (000) 000-00-00" Style="{StaticResource TextBox_and_MaskedTextBox}" Background="{DynamicResource DarkWhiteBackground}" Foreground="{DynamicResource DarkWhiteText}"/>
+                <Label Content="Адрес:" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Foreground="{DynamicResource DarkWhiteText}"/>
+                <TextBox x:Name="textBoxAdressAdd" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="4" Style="{StaticResource TextBox_and_MaskedTextBox}" Background="{DynamicResource DarkWhiteBackground}" Foreground="{DynamicResource DarkWhiteText}"/>
+                <Button x:Name="buttonAdd" Content="Добавить" Grid.Column="5" Grid.Row="3" Grid.ColumnSpan="2"/>
             </Grid>
         </GroupBox>
-        <GroupBox Grid.Column="1" Grid.Row="0" Header="Редактирование" Padding="5">
+        <GroupBox Grid.Column="1" Grid.Row="0" Header="Редактирование" Padding="5" BorderBrush="Black" Style="{StaticResource BoldSize}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
@@ -57,24 +91,38 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="1.25*"></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Label Content="ФИО:" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" FontWeight="Bold" FontFamily="Arial Black" FontSize="16" />
-                <Label Content="Телефон:" Grid.Column="4" Grid.Row="0" Grid.ColumnSpan="2" FontWeight="Bold" FontFamily="Arial Black" FontSize="16" />
-                <TextBox x:Name="textBoxFIORef" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" FontSize="16"/>
-                <xctk:MaskedTextBox x:Name="_maskedTextBoxRef" Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="3" Mask="+7 (000) 000-00-00" FontSize="16" />
-                <Label Content="Адрес:" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" FontWeight="Bold" FontFamily="Arial Black" FontSize="16" />
-                <TextBox x:Name="textBoxAdressRef" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="4" FontSize="16"/>
-                <Button x:Name="buttonRef" Content="Редактировать" Grid.Column="5" Grid.Row="3" Grid.ColumnSpan="2" Click="buttonAdd_Click" FontWeight="Bold" FontSize="14"/>
+                <Label Content="ФИО:" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Foreground="{DynamicResource DarkWhiteText}"/>
+                <Label Content="Телефон:" Grid.Column="4" Grid.Row="0" Grid.ColumnSpan="2" Foreground="{DynamicResource DarkWhiteText}"/>
+                <TextBox x:Name="textBoxFIORef" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource TextBox_and_MaskedTextBox}" Background="{DynamicResource DarkWhiteBackground}" Foreground="{DynamicResource DarkWhiteText}"/>
+                <xctk:MaskedTextBox x:Name="_maskedTextBoxRef" Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="3" Mask="+7 (000) 000-00-00" Style="{StaticResource TextBox_and_MaskedTextBox}" Background="{DynamicResource DarkWhiteBackground}" Foreground="{DynamicResource DarkWhiteText}"/>
+                <Label Content="Адрес:" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Foreground="{DynamicResource DarkWhiteText}"/>
+                <TextBox x:Name="textBoxAdressRef" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="4" Style="{StaticResource TextBox_and_MaskedTextBox}" Background="{DynamicResource DarkWhiteBackground}" Foreground="{DynamicResource DarkWhiteText}"/>
+                <Button x:Name="buttonRef" Content="Редактировать" Grid.Column="5" Grid.Row="3" Grid.ColumnSpan="2"/>
             </Grid>
         </GroupBox>
-        <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2">
-            <DataGrid.Columns FontFamily="Arial Black" FontSize="16">
-                <DataGridTextColumn  Width="0.75*" Header="ФИО" Binding="{Binding FIO}" />
-                <DataGridTextColumn  Width="0.75*" Header="Телефон" Binding="{Binding Tel}" />
-                <DataGridTextColumn  Width="*" Header="Адрес" Binding="{Binding Adress}" />
+        <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2" Background="{DynamicResource DarkWhiteBackground}" RowBackground="{DynamicResource DarkWhiteBackground}" Foreground="{DynamicResource DarkWhiteText}">
+            <DataGrid.Columns>
+                <StaticResource ResourceKey="columnFIO"/>
+                <StaticResource ResourceKey="columnTel"/>
+                <StaticResource ResourceKey="columnAdress"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Grid Grid.Column="1" Grid.Row="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.2*"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="0.2*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="buttonLight" Content="Стандартная тема" Grid.Column="0" Grid.Row="1" Click="buttonLight_Click"/>
+            <Button x:Name="buttonDark" Content="Мягкая тема" Grid.Column="2" Grid.Row="1" Click="buttonDark_Click"/>
+        </Grid>
     </Grid>
 </Window>

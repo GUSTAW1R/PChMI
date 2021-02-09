@@ -25,9 +25,39 @@ namespace PChMI
             InitializeComponent();
         }
 
+        private List<Customer> LoadPrepareData()
+        {
+            List<Customer> customer = new List<Customer>();
+            customer.Add(new Customer()
+            {
+                FIO = "Иванов Иван Иванович",
+                Tel = "+7 (999) 654-32-10",
+                Adress = "Москва, ул. Ленина, д. 43"
+            });
+
+            return customer;
+        }
+
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            dataGrid.ItemsSource = LoadPrepareData();
+        }
+
+        private void buttonLight_Click(object sender, RoutedEventArgs e)
+        {
+            this.Resources["DarkWhiteBackground"] = new SolidColorBrush(Colors.White);
+            this.Resources["DarkWhiteText"] = new SolidColorBrush(Colors.Black);
+        }
+
+        private void buttonDark_Click(object sender, RoutedEventArgs e)
+        {
+            this.Resources["DarkWhiteBackground"] = new SolidColorBrush(Colors.Aquamarine);
+            this.Resources["DarkWhiteText"] = new SolidColorBrush(Colors.Red);
         }
     }
 }
