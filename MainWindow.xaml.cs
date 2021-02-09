@@ -64,7 +64,7 @@ namespace PChMI
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            LoadPrepareData();
+            dataGrid.ItemsSource = LoadPrepareData();
         }
     }
 }
