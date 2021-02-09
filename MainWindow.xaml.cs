@@ -43,11 +43,6 @@ namespace PChMI
 
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            dataGrid.ItemsSource = LoadPrepareData();
-        }
-
         private void buttonLight_Click(object sender, RoutedEventArgs e)
         {
             this.Resources["DarkWhiteBackground"] = new SolidColorBrush(Colors.White);
@@ -58,6 +53,18 @@ namespace PChMI
         {
             this.Resources["DarkWhiteBackground"] = new SolidColorBrush(Colors.Aquamarine);
             this.Resources["DarkWhiteText"] = new SolidColorBrush(Colors.Red);
+        }
+
+        private void WhiteDark_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            NavigationWindow win = new NavigationWindow();
+            win.Content = new PageHelp();
+            win.Show();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadPrepareData();
         }
     }
 }

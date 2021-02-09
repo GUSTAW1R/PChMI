@@ -1,0 +1,27 @@
+﻿<Page x:Class="PChMI.PageHelp"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PChMI"
+      mc:Ignorable="d" 
+      d:DesignHeight="100" d:DesignWidth="450"
+      Title="PageHelp">
+
+    <Grid>
+        <RichTextBox>
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text="Справка по темам:" FontFamily="Arial Black" FontSize="18"/>
+                </Paragraph>
+                <Paragraph>
+                    <Run Text="Стандартная тема - черный текст и белый фон" FontFamily="Arial" FontSize="16"/>
+                </Paragraph>
+                <Paragraph>
+                    <Run Text="Мягкая тема - красный текст и аквамариновый фон" FontFamily="Arial" FontSize="16"/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+
+    </Grid>
+</Page>
